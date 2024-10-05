@@ -6,7 +6,9 @@ client = AsyncHumeClient(
     api_key="YOUR_API_KEY",
 )
 
-async def main() -> None:
-    await client.empathic_voice.configs.list_configs()
+class HumeClient:
+    def __init__(self, api_key: str):
+        self.client = AsyncHumeClient(api_key=api_key)
 
-asyncio.run(main())
+    async def list_configs(self):
+        return await self.client.empathic_voice.configs.list_configs()
